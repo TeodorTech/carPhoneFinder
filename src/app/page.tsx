@@ -12,7 +12,6 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
   const isUserLoggedIn = session?.user?.name ?? false;
   const currentUserId = (session as SessionWithId)?.user?.id ?? null;
-  console.log(session?.user);
   let cars: CarData[] | null = null;
   if (currentUserId) {
     const carsRemote = await getAllCars();
