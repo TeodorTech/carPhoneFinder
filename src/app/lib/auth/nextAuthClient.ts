@@ -5,7 +5,7 @@ import Google from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   // Secret for Next-auth, without this JWT encryption/decryption won't work
-  secret: process.env.TOKEN_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 
   // Configure one or more authentication providers
   providers: [
