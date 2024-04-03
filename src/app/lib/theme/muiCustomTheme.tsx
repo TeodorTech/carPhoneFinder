@@ -2,9 +2,9 @@ import { createTheme, ThemeOptions } from "@mui/material";
 
 export const themeOptions: ThemeOptions = {
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#3f51b5",
+      main: "#43c9e0",
     },
     secondary: {
       main: "#f50057",

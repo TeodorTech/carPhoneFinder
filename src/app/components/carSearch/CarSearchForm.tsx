@@ -13,19 +13,28 @@ import {
   Typography,
   CircularProgress,
   FormControlLabel,
+  CardHeader,
 } from "@mui/material";
 import { DefaultSession } from "next-auth";
+import { searchCarByRegistrationNumber } from "@/app/lib/firebase/utils/searchCarByRegistrationNumber";
+import SearchIcon from "@mui/icons-material/Search";
+import SearchResult, { CarData } from "./SearchResult";
 
+export interface TodoData {
+  title: string;
+  id: string;
+  description: string;
+  completed: boolean;
+  authorId: string;
+}
 // the typescript interface for the fields allows the Hook Form plugin to infer types and names of the fields we are using
-interface IAddCarRegistration {
+interface IAddCarSearch {
   carIdNumber: string;
-  phoneNumber: string;
 }
 
 // the validation schema is used against the values on any/every change
 const schema = yup.object({
   carIdNumber: yup.string().required(),
-  phoneNumber: yup.string().required(),
 });
 
 // we are extending the interface of the session object because we have modified the initial values when we added the ID there, in a real application, we would declare this type to be overwritten globally, by extending it, in a .d.ts file
@@ -33,40 +42,33 @@ export type SessionWithId = Omit<DefaultSession, "user"> & {
   user: DefaultSession["user"] & { id: string };
 };
 
-const AddForm: FC<{ userId: string }> = ({ userId }) => {
+const CarSearchForm: FC = () => {
   const [submitting, setSubmitting] = useState(false);
+  const [foundCars, setFoundCars] = useState<CarData[]>([]);
 
   const {
     handleSubmit,
     control,
     formState: { errors },
     setValue,
-  } = useForm<IAddCarRegistration>({
+  } = useForm<IAddCarSearch>({
     resolver: yupResolver(schema),
     defaultValues: {
       carIdNumber: "",
-      phoneNumber: "",
     },
   });
 
   const formHasErrors = !!Object.keys(errors).length;
 
-  const onSubmit: SubmitHandler<IAddCarRegistration> = async (data) => {
+  const onSubmit: SubmitHandler<IAddCarSearch> = async (data) => {
     setSubmitting(true);
-
     // in a real application, we would create a reusable wrapper over this fetch call, but it's good to have it layed out in the open here and now
-    return await fetch(`/todos/${userId}`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(() => {
+    searchCarByRegistrationNumber(data.carIdNumber)
+      .then((res) => {
+        setFoundCars(res as CarData[]);
         // we reset the loading state to false, and clear the form
         setSubmitting(false);
         setValue("carIdNumber", "");
-        setValue("phoneNumber", "");
       })
       .catch((err) => {
         console.log(err.message);
@@ -75,47 +77,37 @@ const AddForm: FC<{ userId: string }> = ({ userId }) => {
 
   return (
     <Card elevation={2} sx={{ p: 2, width: 500, maxWidth: "100%" }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2}>
-          <Typography variant="h5">Register New Car</Typography>
-          {/* the Controller wrapper is provided by Hook Form in order to support any UI framework, it exposes the onChange functions and all the rest */}
-          <Controller
-            name="carIdNumber"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder="Registration Number"
-                helperText={errors.carIdNumber?.message ?? null}
-              />
-            )}
-          />
+      <Stack spacing={2}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack direction="row" justifyContent="space-between">
+            <Controller
+              name="carIdNumber"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  style={{ width: "100%" }}
+                  placeholder="Search registration number..."
+                  helperText={errors.carIdNumber?.message ?? null}
+                />
+              )}
+            />
 
-          <Controller
-            name="phoneNumber"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder="Phone Number"
-                helperText={errors.phoneNumber?.message ?? null}
-              />
-            )}
-          />
-
-          <Button
-            variant="contained"
-            type="submit"
-            color="primary"
-            disabled={submitting || formHasErrors}
-            endIcon={submitting ? <CircularProgress size={20} /> : null}
-          >
-            <span>Add</span>
-          </Button>
-        </Stack>
-      </form>
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+              disabled={submitting || formHasErrors}
+              size="small"
+            >
+              {submitting ? <CircularProgress size={20} /> : <SearchIcon />}
+            </Button>
+          </Stack>
+        </form>
+        {foundCars.length > 0 && <SearchResult cars={foundCars} />}
+      </Stack>
     </Card>
   );
 };
 
-export default AddForm;
+export default CarSearchForm;

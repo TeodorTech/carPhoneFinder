@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import Image from "next/image";
 import React, { FC } from "react";
 import Link from "next/link";
+import DirectionsCarFilledIcon from "@mui/icons-material/DirectionsCarFilled";
 import HeaderLoginButton from "./subcomponents/HeaderLoginButton";
 
 const GeneralHeader: FC = () => {
@@ -17,7 +18,7 @@ const GeneralHeader: FC = () => {
       }}
     >
       <Link href="/">
-        <Image src={`/logo.png`} alt="logo" width={80} height={65} />
+        <DirectionsCarFilledIcon />
       </Link>
 
       <HeaderLoginButton />
