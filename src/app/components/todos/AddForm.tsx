@@ -77,7 +77,6 @@ const AddForm: FC<{ userId: string }> = ({ userId }) => {
     <Card elevation={2} sx={{ p: 2, width: 500, maxWidth: "100%" }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
-          <Typography variant="h5">Register New Car</Typography>
           {/* the Controller wrapper is provided by Hook Form in order to support any UI framework, it exposes the onChange functions and all the rest */}
           <Controller
             name="carIdNumber"

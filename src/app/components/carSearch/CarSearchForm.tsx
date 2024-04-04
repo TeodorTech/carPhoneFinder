@@ -14,6 +14,7 @@ import {
   CircularProgress,
   FormControlLabel,
   CardHeader,
+  Box,
 } from "@mui/material";
 import { DefaultSession } from "next-auth";
 import { searchCarByRegistrationNumber } from "@/app/lib/firebase/utils/searchCarByRegistrationNumber";
@@ -79,29 +80,36 @@ const CarSearchForm: FC = () => {
     <Card elevation={2} sx={{ p: 2, width: 500, maxWidth: "100%" }}>
       <Stack spacing={2}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack direction="row" justifyContent="space-between">
-            <Controller
-              name="carIdNumber"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  style={{ width: "100%" }}
-                  placeholder="Search registration number..."
-                  helperText={errors.carIdNumber?.message ?? null}
-                />
-              )}
-            />
+          <Stack spacing={2}>
+            <Box>
+              <Typography textAlign={"center"} px={4}>
+                Let's find that phone number you are looking for...
+              </Typography>
+            </Box>
+            <Stack direction="row" justifyContent="space-between" px={1}>
+              <Controller
+                name="carIdNumber"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    style={{ width: "100%" }}
+                    placeholder="Search car registration number..."
+                    helperText={errors.carIdNumber?.message ?? null}
+                  />
+                )}
+              />
 
-            <Button
-              variant="contained"
-              type="submit"
-              color="primary"
-              disabled={submitting || formHasErrors}
-              size="small"
-            >
-              {submitting ? <CircularProgress size={20} /> : <SearchIcon />}
-            </Button>
+              <Button
+                variant="contained"
+                type="submit"
+                color="primary"
+                disabled={submitting || formHasErrors}
+                size="small"
+              >
+                {submitting ? <CircularProgress size={20} /> : <SearchIcon />}
+              </Button>
+            </Stack>
           </Stack>
         </form>
         {foundCars.length > 0 && <SearchResult cars={foundCars} />}

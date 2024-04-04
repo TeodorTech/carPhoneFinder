@@ -2,6 +2,7 @@
 import { Avatar, Button, IconButton, Menu, MenuItem } from "@mui/material";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { FC, useState } from "react";
+import LoginIcon from "@mui/icons-material/Login";
 
 // we use client for this component because of the onClick interactions, since we're bound to use the client, we will be directly using the useSession provider here, instead of passing from props aswell
 const HeaderLoginButton: FC = () => {
@@ -18,7 +19,11 @@ const HeaderLoginButton: FC = () => {
   };
   if (!session?.data?.user?.name) {
     return (
-      <Button variant="contained" onClick={() => signIn()}>
+      <Button
+        variant="contained"
+        onClick={() => signIn()}
+        endIcon={<LoginIcon />}
+      >
         Sign in
       </Button>
     );
