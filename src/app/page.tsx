@@ -77,7 +77,7 @@ export default async function Home() {
                 <span role="img" aria-label="dog">
                   ✅
                 </span>{" "}
-                Let's add a phone number for one of your cars!
+                Add a phone number for one of your cars!
               </Typography>
             </Grid>
             <Grid item xs={12}>

@@ -83,7 +83,7 @@ const CarSearchForm: FC = () => {
           <Stack spacing={2}>
             <Box>
               <Typography textAlign={"center"} px={4}>
-                Let's find that phone number you are looking for...
+                Find that phone number you are looking for...
               </Typography>
             </Box>
             <Stack direction="row" justifyContent="space-between" px={1}>
