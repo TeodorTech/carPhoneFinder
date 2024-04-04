@@ -29,13 +29,8 @@ const SearchResult: FC<FoundCars> = ({ cars }) => {
           Phone number of the car with Reg.No.:{carIdNumber}
         </Typography>
         <Typography variant="h6">
-          <span role="img" aria-label="dog">
-            📞
-          </span>{" "}
-          <strong>{phoneNumber}</strong>{" "}
-          <span role="img" aria-label="dog">
-            📞
-          </span>{" "}
+          📞
+          <strong>{phoneNumber}</strong> 📞
         </Typography>
       </Stack>
     </Box>

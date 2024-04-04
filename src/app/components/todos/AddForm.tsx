@@ -74,7 +74,7 @@ const AddForm: FC<{ userId: string }> = ({ userId }) => {
   };
 
   return (
-    <Card elevation={2} sx={{ p: 2, width: 500, maxWidth: "100%" }}>
+    <Card elevation={2} sx={{ p: 2, width: "100vw", maxWidth: "500px" }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           {/* the Controller wrapper is provided by Hook Form in order to support any UI framework, it exposes the onChange functions and all the rest */}

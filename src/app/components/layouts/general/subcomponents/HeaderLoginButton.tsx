@@ -1,5 +1,5 @@
 "use client";
-import { Avatar, Button, IconButton, Menu, MenuItem } from "@mui/material";
+import { Avatar, Box, Button, IconButton, Menu, MenuItem } from "@mui/material";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { FC, useState } from "react";
 import LoginIcon from "@mui/icons-material/Login";
@@ -30,7 +30,7 @@ const HeaderLoginButton: FC = () => {
   }
 
   return (
-    <>
+    <Box>
       <IconButton onClick={(e) => handleOpen(e)}>
         <Avatar
           alt={session.data?.user?.name}
@@ -46,7 +46,7 @@ const HeaderLoginButton: FC = () => {
           Sign Out
         </MenuItem>
       </Menu>
-    </>
+    </Box>
   );
 };
 

@@ -74,7 +74,7 @@ const AddForm: FC<{ userId: string }> = ({ userId }) => {
   };
 
   return (
-    <Card elevation={2} sx={{ p: 2, width: 500, maxWidth: "100%" }}>
+    <Card elevation={2} sx={{ p: 2, width: "100vw" }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2}>
           <Typography variant="h5">Register New Car</Typography>
