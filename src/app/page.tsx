@@ -49,8 +49,11 @@ export default async function Home() {
             component="h1"
             sx={{ textAlign: "center", px: 2 }}
           >
-            🔎 We help you find the phone number of the owner of any car based
-            on the registration number of the car!
+            <span role="img" aria-label="dog">
+              🔍
+            </span>{" "}
+            We help you find the phone number of the owner of any car based on
+            the registration number of the car!
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -71,7 +74,10 @@ export default async function Home() {
                 component="h1"
                 sx={{ textAlign: "center", px: 2 }}
               >
-                ✅ Let's add a phone number for one of your cars!
+                <span role="img" aria-label="dog">
+                  ✅
+                </span>{" "}
+                Let's add a phone number for one of your cars!
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -86,8 +92,11 @@ export default async function Home() {
                 component="h1"
                 sx={{ textAlign: "center", px: 2 }}
               >
-                ✅ Also, you can add your own phone number for one of your cars
-                if you sign in!
+                <span role="img" aria-label="dog">
+                  ✅
+                </span>{" "}
+                Also, you can add your own phone number for one of your cars if
+                you sign in!
               </Typography>
             </Grid>
             <Grid item xs={12}>
