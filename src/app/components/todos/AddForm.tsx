@@ -15,6 +15,7 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { DefaultSession } from "next-auth";
+import AddIcon from "@mui/icons-material/Add";
 
 // the typescript interface for the fields allows the Hook Form plugin to infer types and names of the fields we are using
 interface IAddCarRegistration {
@@ -107,7 +108,7 @@ const AddForm: FC<{ userId: string }> = ({ userId }) => {
             type="submit"
             color="primary"
             disabled={submitting || formHasErrors}
-            endIcon={submitting ? <CircularProgress size={20} /> : null}
+            endIcon={submitting ? <CircularProgress size={20} /> : <AddIcon />}
           >
             <span>Add</span>
           </Button>

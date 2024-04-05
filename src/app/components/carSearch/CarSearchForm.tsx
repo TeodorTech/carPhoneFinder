@@ -19,6 +19,7 @@ import {
 import { DefaultSession } from "next-auth";
 import { searchCarByRegistrationNumber } from "@/app/lib/firebase/utils/searchCarByRegistrationNumber";
 import SearchIcon from "@mui/icons-material/Search";
+import cover from "../../assets/porche.png";
 import SearchResult, { CarData } from "./SearchResult";
 
 export interface TodoData {
@@ -77,44 +78,63 @@ const CarSearchForm: FC = () => {
   };
 
   return (
-    <Card elevation={2} sx={{ p: 2, width: 500, maxWidth: "100%" }}>
-      <Stack spacing={2}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={2}>
-            <Box>
-              <Typography textAlign={"center"} px={4}>
-                Find that phone number you are looking for...
-              </Typography>
-            </Box>
-            <Stack direction="row" justifyContent="space-between" px={1}>
-              <Controller
-                name="carIdNumber"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    style={{ width: "100%" }}
-                    placeholder="Search car registration number..."
-                    helperText={errors.carIdNumber?.message ?? null}
-                  />
-                )}
-              />
+    <Box
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
+      sx={{
+        backgroundImage: `url(${cover.src})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: "400px",
+      }}
+    >
+      <Card
+        sx={{
+          p: 2,
+          m: 2,
+          borderRadius: 6,
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
+        }}
+      >
+        <Stack spacing={2}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Stack spacing={2}>
+              <Box>
+                <Typography textAlign={"center"} px={2} fontWeight={"bold"}>
+                  Find that phone number you are looking for...
+                </Typography>
+              </Box>
+              <Stack direction="row" justifyContent="space-between" px={1}>
+                <Controller
+                  name="carIdNumber"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      style={{ width: "100%" }}
+                      placeholder="Search car registration number..."
+                      helperText={errors.carIdNumber?.message ?? null}
+                    />
+                  )}
+                />
 
-              <Button
-                variant="contained"
-                type="submit"
-                color="primary"
-                disabled={submitting || formHasErrors}
-                size="small"
-              >
-                {submitting ? <CircularProgress size={20} /> : <SearchIcon />}
-              </Button>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  disabled={submitting || formHasErrors}
+                  size="small"
+                >
+                  {submitting ? <CircularProgress size={20} /> : <SearchIcon />}
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        </form>
-        {foundCars.length > 0 && <SearchResult cars={foundCars} />}
-      </Stack>
-    </Card>
+          </form>
+          {foundCars.length > 0 && <SearchResult cars={foundCars} />}
+        </Stack>
+      </Card>
+    </Box>
   );
 };
 

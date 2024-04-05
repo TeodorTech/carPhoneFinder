@@ -1,8 +1,9 @@
-import { Box } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { FC } from "react";
 import Link from "next/link";
-import DirectionsCarFilledIcon from "@mui/icons-material/DirectionsCarFilled";
+import SearchIcon from "@mui/icons-material/Search";
+
 import HeaderLoginButton from "./subcomponents/HeaderLoginButton";
 
 const GeneralHeader: FC = () => {
@@ -17,9 +18,10 @@ const GeneralHeader: FC = () => {
         bgcolor: "primary.light",
       }}
     >
-      <Link href="/">
-        <DirectionsCarFilledIcon />
-      </Link>
+      <Stack direction={"row"}>
+        <SearchIcon />
+        <Typography fontWeight={"bold"}>CarPhone Finder</Typography>
+      </Stack>
 
       <HeaderLoginButton />
     </Box>

@@ -34,32 +34,6 @@ export default async function Home() {
               width: 400,
             }}
           >
-            <Typography
-              variant="h5"
-              component="h1"
-              sx={{ textAlign: "center", my: 2 }}
-            >
-              Welcome to CarPhoneFinder!
-            </Typography>
-          </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <Typography
-            variant="h6"
-            component="h1"
-            sx={{ textAlign: "center", px: 2 }}
-          >
-            🔍 We help you find the phone number of the owner of any car based
-            on the registration number of the car!
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Card
-            elevation={2}
-            sx={{
-              width: 400,
-            }}
-          >
             <CarSearchForm />
           </Card>
         </Grid>
@@ -81,19 +55,19 @@ export default async function Home() {
         ) : (
           <>
             <Grid item xs={12}>
-              <Typography
-                variant="h6"
-                component="h1"
-                sx={{ textAlign: "center", px: 2 }}
-              >
-                ✅ Also, you can add your own phone number for one of your cars
-                if you sign in!
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <HeaderLoginButton />
-              </Box>
+              <Card sx={{ py: 2, backgroundColor: "rgba(233, 233, 233, 0.5)" }}>
+                <Typography
+                  variant="h6"
+                  component="h1"
+                  sx={{ textAlign: "center", px: 2, py: 1 }}
+                >
+                  ✅ Also, you can add your own phone number for one of your
+                  cars if you sign in!
+                </Typography>
+                <Box display="flex" justifyContent="center" alignItems="center">
+                  <HeaderLoginButton />
+                </Box>
+              </Card>
             </Grid>
           </>
         )}
