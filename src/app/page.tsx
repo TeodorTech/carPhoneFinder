@@ -28,14 +28,7 @@ export default async function Home() {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <Card
-            elevation={2}
-            sx={{
-              width: 400,
-            }}
-          >
-            <CarSearchForm />
-          </Card>
+          <CarSearchForm />
         </Grid>
         {currentUserId ? (
           <>

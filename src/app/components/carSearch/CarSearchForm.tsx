@@ -88,7 +88,6 @@ const CarSearchForm: FC = () => {
         backgroundSize: "cover",
         height: "400px",
         width: "100vw",
-        maxWidth: "500px",
       }}
     >
       <Card
