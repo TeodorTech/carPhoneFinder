@@ -92,7 +92,6 @@ const CarSearchForm: FC = () => {
       <Card
         sx={{
           p: 2,
-          m: 2,
           borderRadius: 6,
           backgroundColor: "rgba(255, 255, 255, 0.5)",
         }}
