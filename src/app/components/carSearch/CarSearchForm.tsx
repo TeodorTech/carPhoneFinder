@@ -87,11 +87,14 @@ const CarSearchForm: FC = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         height: "400px",
+        width: "100vw",
+        maxWidth: "500px",
       }}
     >
       <Card
         sx={{
           p: 2,
+          m: 2,
           borderRadius: 6,
           backgroundColor: "rgba(255, 255, 255, 0.5)",
         }}
