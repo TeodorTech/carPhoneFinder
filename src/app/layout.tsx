@@ -9,8 +9,8 @@ import GeneralLayout from "./components/layouts/general/GeneralLayout";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "My Next App",
-  description: "Im the best",
+  title: "CarPhone Finder",
+  description: "Find the phone number of any car",
 };
 
 export default async function RootLayout({
