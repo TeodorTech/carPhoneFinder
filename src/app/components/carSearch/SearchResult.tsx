@@ -1,4 +1,4 @@
-import { Box, Card, CardHeader, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 
 export interface CarData {
@@ -16,7 +16,7 @@ const SearchResult: FC<FoundCars> = ({ cars }) => {
   if (cars.length === 0) {
     return (
       <Typography variant="body1">
-        Ooops! We could not find any phone number
+        ❌ Ooops! We could not find any phone number
       </Typography>
     );
   }
@@ -26,7 +26,7 @@ const SearchResult: FC<FoundCars> = ({ cars }) => {
     <Box width={"100%"}>
       <Stack spacing={2} alignItems={"center"}>
         <Typography variant="body1">
-          Phone number of the car with Reg.No.:{carIdNumber}
+          Phone number of the car: <strong>{carIdNumber}</strong>
         </Typography>
         <Typography variant="h6">
           📞

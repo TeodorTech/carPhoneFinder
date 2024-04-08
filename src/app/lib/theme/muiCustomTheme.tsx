@@ -1,4 +1,7 @@
 import { createTheme, ThemeOptions } from "@mui/material";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const themeOptions: ThemeOptions = {
   palette: {
@@ -9,6 +12,13 @@ export const themeOptions: ThemeOptions = {
     secondary: {
       main: "#f50057",
     },
+  },
+  typography: {
+    fontFamily: inter.style.fontFamily,
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
   },
 };
 

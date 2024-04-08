@@ -22,7 +22,7 @@ export default async function Home() {
     <Box component="main">
       <Grid
         container
-        spacing={4}
+        spacing={2}
         direction="column"
         justifyContent="center"
         alignItems="center"
@@ -33,13 +33,25 @@ export default async function Home() {
         {currentUserId ? (
           <>
             <Grid item xs={12}>
-              <Typography
-                variant="h6"
-                component="h1"
-                sx={{ textAlign: "center", px: 2 }}
+              <Card
+                sx={{
+                  p: 2,
+                  backgroundColor: "rgba(196, 196, 196, 0.5)",
+                  width: "100%",
+                }}
               >
-                ✅ Add a phone number for one of your cars!
-              </Typography>
+                <Typography
+                  variant="h6"
+                  component="h1"
+                  sx={{
+                    textAlign: "center",
+                    px: 2,
+                  }}
+                >
+                  ✅ Add your details so that others can find your phone number
+                  by searching the car registration number
+                </Typography>
+              </Card>
             </Grid>
             <Grid item xs={12}>
               <AddForm userId={currentUserId} />

@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { DefaultSession } from "next-auth";
 import AddIcon from "@mui/icons-material/Add";
+import registrationCover from "../../assets/car-reg.jpg";
 
 // the typescript interface for the fields allows the Hook Form plugin to infer types and names of the fields we are using
 interface IAddCarRegistration {
@@ -75,46 +76,70 @@ const AddForm: FC<{ userId: string }> = ({ userId }) => {
   };
 
   return (
-    <Card elevation={2} sx={{ p: 2, width: "100vw", maxWidth: "500px" }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={2}>
-          {/* the Controller wrapper is provided by Hook Form in order to support any UI framework, it exposes the onChange functions and all the rest */}
-          <Controller
-            name="carIdNumber"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder="Registration Number"
-                helperText={errors.carIdNumber?.message ?? null}
-              />
-            )}
-          />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Card
+        elevation={2}
+        sx={{
+          width: "100vw",
+          maxWidth: "500px",
+          backgroundImage: `url(${registrationCover.src})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          height: "400px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Card
+          sx={{
+            p: 2,
+            borderRadius: 4,
+            backgroundColor: "rgb(255, 255, 255)",
+            width: "80%",
+          }}
+        >
+          <Stack spacing={2}>
+            {/* the Controller wrapper is provided by Hook Form in order to support any UI framework, it exposes the onChange functions and all the rest */}
+            <Controller
+              name="carIdNumber"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  placeholder="Car. No.: B123ABC"
+                  helperText={errors.carIdNumber?.message ?? null}
+                />
+              )}
+            />
 
-          <Controller
-            name="phoneNumber"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                placeholder="Phone Number"
-                helperText={errors.phoneNumber?.message ?? null}
-              />
-            )}
-          />
+            <Controller
+              name="phoneNumber"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  placeholder="Phone Number"
+                  helperText={errors.phoneNumber?.message ?? null}
+                />
+              )}
+            />
 
-          <Button
-            variant="contained"
-            type="submit"
-            color="primary"
-            disabled={submitting || formHasErrors}
-            endIcon={submitting ? <CircularProgress size={20} /> : <AddIcon />}
-          >
-            <span>Add</span>
-          </Button>
-        </Stack>
-      </form>
-    </Card>
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+              disabled={submitting || formHasErrors}
+              endIcon={
+                submitting ? <CircularProgress size={20} /> : <AddIcon />
+              }
+            >
+              <span>Add</span>
+            </Button>
+          </Stack>
+        </Card>
+      </Card>
+    </form>
   );
 };
 

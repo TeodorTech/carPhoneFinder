@@ -47,6 +47,7 @@ export type SessionWithId = Omit<DefaultSession, "user"> & {
 const CarSearchForm: FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [foundCars, setFoundCars] = useState<CarData[]>([]);
+  const [searchedValue, setSearchedValue] = useState("");
 
   const {
     handleSubmit,
@@ -64,8 +65,9 @@ const CarSearchForm: FC = () => {
 
   const onSubmit: SubmitHandler<IAddCarSearch> = async (data) => {
     setSubmitting(true);
+    setSearchedValue(data.carIdNumber);
     // in a real application, we would create a reusable wrapper over this fetch call, but it's good to have it layed out in the open here and now
-    searchCarByRegistrationNumber(data.carIdNumber)
+    searchCarByRegistrationNumber(data.carIdNumber.toUpperCase())
       .then((res) => {
         setFoundCars(res as CarData[]);
         // we reset the loading state to false, and clear the form
@@ -96,6 +98,7 @@ const CarSearchForm: FC = () => {
           m: 2,
           borderRadius: 6,
           backgroundColor: "rgba(255, 255, 255, 0.5)",
+          width: "80%",
         }}
       >
         <Stack spacing={2}>
@@ -132,7 +135,7 @@ const CarSearchForm: FC = () => {
               </Stack>
             </Stack>
           </form>
-          {foundCars.length > 0 && <SearchResult cars={foundCars} />}
+          {searchedValue && <SearchResult cars={foundCars} />}
         </Stack>
       </Card>
     </Box>

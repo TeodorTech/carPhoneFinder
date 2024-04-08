@@ -31,7 +31,8 @@ export async function POST(
   const newCarRegistration = {
     createdBy: userId,
     createdAt: new Date().toISOString(),
-    ...data,
+    carIdNumber: data.carIdNumber.toUpperCase(),
+    phoneNumber: data.phoneNumber.toUpperCase(),
   };
   try {
     // finally trigger the send to the DB utility, and capture the errors, if any
